@@ -1,0 +1,21 @@
+package com.openclassrooms.notes.repository
+
+import com.openclassrooms.notes.service.LocalNotesApiService
+import com.openclassrooms.notes.service.NotesApiService
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+
+/**
+ * Repository class for the notes.
+ */
+class NotesRepository {
+
+    private val notesApiService: NotesApiService = LocalNotesApiService()
+
+    /**
+     * A flow that emits a list of all notes.
+     */
+    val notes: Flow<List<Pair<String, String>>> = flow {
+        emit(notesApiService.getAllNotes())
+    }
+}

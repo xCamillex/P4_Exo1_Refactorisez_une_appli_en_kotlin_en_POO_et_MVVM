@@ -5,6 +5,11 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 
+/**
+ * A decoration that adds spacing between items in a RecyclerView.
+ * @param spaceSize The size of the spacing in pixels.
+ * @param spanCount The number of columns in the RecyclerView.
+ */
 class NoteItemDecoration(
     private val spaceSize: Int,
     private val spanCount: Int

@@ -15,6 +15,9 @@ import kotlinx.coroutines.launch
  */
 class MainActivity : AppCompatActivity() {
 
+    /**
+     * The binding for the main layout.
+     */
     private lateinit var binding: ActivityMainBinding
 
     private val notesAdapter = NotesAdapter(emptyList())

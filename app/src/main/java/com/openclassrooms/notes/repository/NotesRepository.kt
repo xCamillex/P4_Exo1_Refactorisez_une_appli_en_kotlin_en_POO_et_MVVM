@@ -10,6 +10,9 @@ import kotlinx.coroutines.flow.flow
  */
 class NotesRepository {
 
+    /**
+     * The API service for interacting with notes.
+     */
     private val notesApiService: NotesApiService = LocalNotesApiService()
 
     /**

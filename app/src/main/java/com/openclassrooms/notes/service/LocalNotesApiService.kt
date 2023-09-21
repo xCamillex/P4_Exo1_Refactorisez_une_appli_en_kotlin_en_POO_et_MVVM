@@ -4,6 +4,7 @@ package com.openclassrooms.notes.service
  * Implementation of the [NotesApiService] interface that stores note in local
  */
 class LocalNotesApiService : NotesApiService {
+
     override fun addNote(note: Pair<String, String>) {
         TODO("Not yet implemented")
     }

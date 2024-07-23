@@ -1,7 +1,8 @@
-package com.openclassrooms.notes.service
+package com.openclassrooms.notes.data.service
 
 /**
  * Defines the contract for the API that manages the notes
+ * Définit le contrat pour l'API qui gère les notes
  */
 interface NotesApiService {
 

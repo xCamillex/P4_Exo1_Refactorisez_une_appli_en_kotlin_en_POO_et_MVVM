@@ -1,4 +1,4 @@
-package com.openclassrooms.notes.widget
+package com.openclassrooms.notes.IU.recyclerview
 
 import android.graphics.Rect
 import android.view.View
@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView.ItemDecoration
  * A decoration that adds spacing between items in a RecyclerView.
  * @param spaceSize The size of the spacing in pixels.
  * @param spanCount The number of columns in the RecyclerView.
+ * Une décoration qui ajoute de l'espacement entre les éléments dans un RecyclerView.
+ * @param spaceSize La taille de l'espacement en pixels.
+ * @param spanCount Le nombre de colonnes dans le RecyclerView.
  */
 class NoteItemDecoration(
     private val spaceSize: Int,

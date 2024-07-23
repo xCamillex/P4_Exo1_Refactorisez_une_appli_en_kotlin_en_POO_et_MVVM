@@ -1,7 +1,8 @@
-package com.openclassrooms.notes.service
+package com.openclassrooms.notes.data.service
 
 /**
  * Implementation of the [NotesApiService] interface that stores note in local
+ * Implémentation de l'interface [NotesApiService] qui stocke les notes en local
  */
 class LocalNotesApiService : NotesApiService {
 

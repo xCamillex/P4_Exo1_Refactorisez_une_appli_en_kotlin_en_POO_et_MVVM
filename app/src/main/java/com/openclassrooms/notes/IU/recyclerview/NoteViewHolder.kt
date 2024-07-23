@@ -2,6 +2,7 @@ package com.openclassrooms.notes.IU.recyclerview
 
 import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.notes.databinding.NoteBinding
+import com.openclassrooms.notes.model.Note
 
 /**
  * A view holder for displaying a note in a RecyclerView.
@@ -17,9 +18,9 @@ class NoteViewHolder(private val binding: NoteBinding): RecyclerView.ViewHolder(
      * Lie le détenteur de la vue à une note.
      * @param note La note à lier au détenteur de la vue.
      */
-    fun bind(note: Pair<String, String>) {
-        binding.title.text = note.first
-        binding.body.text = note.second
+    fun bind(note: Note) {
+        binding.title.text = note.title
+        binding.body.text = note.body
     }
 
 }

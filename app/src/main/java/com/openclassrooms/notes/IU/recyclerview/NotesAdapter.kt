@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.notes.databinding.NoteBinding
+import com.openclassrooms.notes.model.Note
 
 /**
  * An adapter for displaying a list of notes in a RecyclerView.
@@ -11,7 +12,7 @@ import com.openclassrooms.notes.databinding.NoteBinding
  * Un adaptateur pour afficher une liste de notes dans un RecyclerView.
  * @param notes La liste des notes à afficher.
  */
-class NotesAdapter(private var notes: List<Pair<String, String>>) : RecyclerView.Adapter<NoteViewHolder>() {
+class NotesAdapter(private var notes: List<Note>) : RecyclerView.Adapter<NoteViewHolder>() {
 
     /**
      * Updates the list of notes displayed by the adapter.
@@ -19,7 +20,7 @@ class NotesAdapter(private var notes: List<Pair<String, String>>) : RecyclerView
      * Met à jour la liste des notes affichées par l'adaptateur.
      * @param newNotes La nouvelle liste de notes à afficher.
      */
-    fun updateNotes(newNotes: List<Pair<String, String>>) {
+    fun updateNotes(newNotes: List<Note>) {
         notes = newNotes
         notifyDataSetChanged()
     }

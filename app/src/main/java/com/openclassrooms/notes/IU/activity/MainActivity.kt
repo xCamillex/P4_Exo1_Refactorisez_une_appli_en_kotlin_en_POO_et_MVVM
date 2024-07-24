@@ -2,19 +2,23 @@ package com.openclassrooms.notes.IU.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.openclassrooms.notes.IU.recyclerview.NoteItemDecoration
 import com.openclassrooms.notes.IU.recyclerview.NotesAdapter
 import com.openclassrooms.notes.R
 import com.openclassrooms.notes.data.repository.NotesRepository
 import com.openclassrooms.notes.databinding.ActivityMainBinding
-import kotlinx.coroutines.launch
+import com.openclassrooms.notes.viewmodel.NoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * The main activity for the app.
  * L'activité principale de l'application.
  */
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     /**
@@ -23,9 +27,10 @@ class MainActivity : AppCompatActivity() {
      */
     private lateinit var binding: ActivityMainBinding
 
-    private val notesAdapter = NotesAdapter(emptyList())
+    @Inject
+    lateinit var noteViewModel: NoteViewModel
 
-    private val notesRepository = NotesRepository()
+    private val notesAdapter = NotesAdapter(emptyList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,20 +40,18 @@ class MainActivity : AppCompatActivity() {
 
         initRecyclerView()
         initFABButton()
-        collectNotes()
+        observeNotes()
     }
 
     /**
-     * Collects notes from the repository and updates the adapter.
-     * Collecte les notes du référentiel et met à jour l'adaptateur.
+     * Observes the list of notes from in the ViewModel and updates the RecyclerView adapter accordingly.
+     * Observe la liste des notes dans ViewModel et met à jour l'adaptateur RecyclerView en conséquence.
      */
-    private fun collectNotes() {
-        lifecycleScope.launch {
-            notesRepository.notes.collect {
-                notesAdapter.updateNotes(it)
+    private fun observeNotes() {
+        noteViewModel.notes.observe(this) {
+            notes -> notesAdapter.updateNotes(notes)
             }
         }
-    }
 
     /**
      * Initializes the FAB button.

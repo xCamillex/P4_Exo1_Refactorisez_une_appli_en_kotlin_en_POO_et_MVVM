@@ -22,7 +22,7 @@ class NotesAdapter(private var notes: List<Note>) : RecyclerView.Adapter<NoteVie
      */
     fun updateNotes(newNotes: List<Note>) {
         notes = newNotes
-        notifyDataSetChanged()
+        notifyItemChanged(notes.size-1)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {

@@ -2,6 +2,7 @@ package com.openclassrooms.notes.di
 
 import com.openclassrooms.notes.data.repository.NotesRepository
 import com.openclassrooms.notes.data.service.LocalNotesApiService
+import com.openclassrooms.notes.data.service.NotesApiService
 import com.openclassrooms.notes.viewmodel.NoteViewModel
 import dagger.Module
 import dagger.Provides
@@ -30,7 +31,7 @@ object AppModule {
      * @return A singleton instance of the LocalNotesApiService.
      */
     @Provides
-    fun provideLocalNotesApiService() : LocalNotesApiService{
+    fun provideLocalNotesApiService() : LocalNotesApiService {
         return LocalNotesApiService()
     }
 

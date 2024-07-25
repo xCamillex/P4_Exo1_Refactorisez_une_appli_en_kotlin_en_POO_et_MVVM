@@ -1,13 +1,10 @@
 package com.openclassrooms.notes.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.openclassrooms.notes.data.repository.NotesRepository
 import com.openclassrooms.notes.model.Note
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -20,47 +17,33 @@ import javax.inject.Inject
  * fournit à l'interface utilisateur via LiveData.
  * Elle contient également une logique permettant d'ajouter de nouvelles notes.
  * @param notesRepository Le repository chargé de fournir l'accès aux données des notes.
+ * Use Hilt to inject the used NoteRepository by the constructor
  */
 
 @HiltViewModel
 class NoteViewModel @Inject constructor (private val notesRepository: NotesRepository) : ViewModel (){
     /**
-     * LiveData object containing the list of notes.
-     * Objet LiveData contenant la liste des notes.
+     * Fetch the note list,
+     * by Exposing
+     * directly the Flow of the noteRepository
+     * @return A Flow with the notes list.
      */
-    private val noteLiveData = MutableLiveData<List<Note>>()
-    val notes: LiveData<List<Note>> get() = noteLiveData
+    val notes: Flow<List<Note>> =  notesRepository.notes
 
     /**
-     * Initializes the ViewModel by collecting notes from the repository.
-     * Initialise le ViewModel en collectant des notes à partir du dépôt.
+     * Add a note to the list
+     * @param newNote The new note object to add to the list.
      */
-    init {
-        collectNotes()
-    }
+    fun addNote(newNote:Note) = notesRepository.addNote(newNote)
 
     /**
-     * Collects the list of notes from the repository and updates the LiveData object.
-     * Collecte la liste des notes du dépôt et met à jour l'objet LiveData.
+     * Remove a note to the list of notes.
+     *
+     * Use one of the 3 parameters to remove a note object.
+     *
+     * @param index (optional) the index position of the note to remove.
+     * @param noteObject (optional) the note object reference to remove of the list.
+     * @param title (optional) the title of the note to remove.
      */
-    private fun collectNotes(){
-        viewModelScope.launch {
-            notesRepository.notes.collect {
-                noteList -> noteLiveData.postValue(noteList)
-            }
-        }
-    }
-
-    /**
-     * Function to add a new note.
-     * Fonction permettant d'ajouter une nouvelle note.
-     */
-    fun addNewNote(title : String, body : String){
-        if ( title.isNotBlank() && body.isNotBlank()){
-            viewModelScope.launch {
-                notesRepository.addNote(Note(title, body))
-                collectNotes()
-            }
-        }
-    }
+    fun removeNote(index: Int?, noteObject:Note?, title: String?) = notesRepository.removeNote(index,noteObject,title)
 }

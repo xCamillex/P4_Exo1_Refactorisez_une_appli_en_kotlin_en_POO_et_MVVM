@@ -14,7 +14,7 @@
         android:theme="@style/Theme.OCRNotes"
         tools:targetApi="31">
         <activity
-            android:name=".IU.activity.MainActivity"
+            android:name=".IU.notes.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

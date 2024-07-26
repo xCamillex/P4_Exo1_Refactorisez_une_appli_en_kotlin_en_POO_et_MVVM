@@ -75,16 +75,30 @@ class NotesFragment : Fragment() {
     }
 
     /**
-     * Initializes the FAB button.
+     * Initializes the Floating Action Button (FAB) to add a new note.
+     * When the FAB is clicked, a dialog is displayed allowing the user to enter the title and body
+     * of the new note.
+     * If the text fields are not empty, the new note is added via the `noteViewModel` and a Toast
+     * notification is displayed.
+     * If any of the fields are empty, a Toast notification informs the user that the title and body
+     * cannot be empty.
+     * Initialise le bouton flottant d'action (Floating Action Button, FAB) pour ajouter une
+     * nouvelle note.
+     * Lorsqu'on clique sur le FAB, un dialogue s'affiche permettant à l'utilisateur de saisir le
+     * titre et le corps de la nouvelle note.
+     * Si les champs de texte ne sont pas vides, la nouvelle note est ajoutée via le `noteViewModel`
+     * et une notification Toast est affichée.
+     * Si l'un des champs est vide, une notification Toast informe l'utilisateur que le titre et le
+     * corps ne peuvent pas être vides.
      */
     private fun initFABButton() {
         binding.btnAdd.setOnClickListener {
             // Créer deux EditText pour obtenir la saisie du titre et du corps de la note
             val titleInput = EditText(requireContext()).apply {
-                hint = "Enter title"
+                hint = "Entrer le titre"
             }
             val bodyInput = EditText(requireContext()).apply {
-                hint = "Enter body"
+                hint = "Entrer le texte"
             }
 
             // Créer un LinearLayout pour contenir les deux EditText
@@ -116,6 +130,7 @@ class NotesFragment : Fragment() {
 
     /**
      * Collects notes from the ViewModel and updates the adapter.
+     * Collecte les notes du ViewModel et met à jour l'adaptateur.
      */
     private fun collectNotes() {
         lifecycleScope.launch {
@@ -130,6 +145,9 @@ class NotesFragment : Fragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          * @return A new instance of fragment NoteFragment.
+         * Utilisez cette méthode d'usine pour créer une nouvelle instance de
+         * ce fragment en utilisant les paramètres fournis.
+         * @return Une nouvelle instance du fragment NoteFragment.
          */
         @JvmStatic
         fun newInstance() = NotesFragment()

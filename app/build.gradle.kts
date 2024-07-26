@@ -69,6 +69,10 @@ dependencies {
     // For Fragment and Activity KTX
     implementation ("androidx.fragment:fragment-ktx:1.8.2")
     implementation ("androidx.activity:activity-ktx:1.9.1")
+    testImplementation ("org.mockito:mockito-core:4.0.0")
+    testImplementation ("org.mockito:mockito-inline:4.0.0")
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation ("io.mockk:mockk:1.13.2")
 }
 // Allow references to generated code
 kapt {

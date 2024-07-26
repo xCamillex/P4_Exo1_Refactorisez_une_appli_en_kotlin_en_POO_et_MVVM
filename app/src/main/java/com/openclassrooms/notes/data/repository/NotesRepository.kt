@@ -11,6 +11,7 @@ import javax.inject.Inject
  * Repository class for the notes.
  * Use dependency injection to get the the used Api service.
  * Classe de référentiel pour les notes.
+ * Utilisez l’injection de dépendances pour obtenir le service API utilisé.
  */
 class NotesRepository @Inject constructor( private val notesApiService: NotesApiService){
 
@@ -29,13 +30,17 @@ class NotesRepository @Inject constructor( private val notesApiService: NotesApi
     fun addNote(newNote: Note) =
         notesApiService.addNote(newNote)
 
-
     /**
      * Remove a note to the list of notes.
      * Use one of the 3 parameters to remove a note object.
      * @param index (optional) the index position of the note to remove.
      * @param noteObject (optional) the note object reference to remove of the list.
      * @param title (optional) the title of the note to remove.
+     * Supprimer une note de la liste des notes.
+     * Utiliser l'un des 3 paramètres pour supprimer un objet note.
+     * @param index (facultatif) la position d'index de la note à supprimer.
+     * @param noteObject (facultatif) la référence de l'objet note à supprimer de la liste.
+     * @param title (facultatif) le titre de la note à supprimer.
      */
     fun removeNote(index: Int?, noteObject:Note?, title: String?) = notesApiService.removeNote(index,noteObject,title)
 

@@ -24,26 +24,33 @@ import javax.inject.Inject
 class NoteViewModel @Inject constructor (private val notesRepository: NotesRepository) : ViewModel (){
     /**
      * Fetch the note list,
-     * by Exposing
-     * directly the Flow of the noteRepository
+     * by Exposing directly the Flow of the notesRepository
      * @return A Flow with the notes list.
+     * Récupérer la liste des notes,
+     * en exposant directement le flux du notesRepository
+     * @return Un flux avec la liste des notes.
      */
     val notes: Flow<List<Note>> =  notesRepository.notes
 
     /**
      * Add a note to the list
      * @param newNote The new note object to add to the list.
+     * Ajouter une note à la liste
+     * @param newNote Le nouvel objet note à ajouter à la liste.
      */
     fun addNote(newNote:Note) = notesRepository.addNote(newNote)
 
     /**
      * Remove a note to the list of notes.
-     *
      * Use one of the 3 parameters to remove a note object.
-     *
      * @param index (optional) the index position of the note to remove.
      * @param noteObject (optional) the note object reference to remove of the list.
      * @param title (optional) the title of the note to remove.
+     * Supprimer une note de la liste des notes.
+     * Utiliser l'un des 3 paramètres pour supprimer un objet note.
+     * @param index (facultatif) la position d'index de la note à supprimer.
+     * @param noteObject (facultatif) la référence de l'objet note à supprimer de la liste.
+     * @param title (facultatif) le titre de la note à supprimer.
      */
     fun removeNote(index: Int?, noteObject:Note?, title: String?) = notesRepository.removeNote(index,noteObject,title)
 }
